@@ -39,14 +39,14 @@ public class Utils {
         List<Employee> res = new LinkedList<>();
         employee.Director director = new Director(new ClassicEmployeeBuilder());
 
-        res.add(director.makeEmployee("Klim", "Fedorov", 20,
+        res.add(director.makeEmployee("Klim", "Fedorov", 45,
                 Employee.Gender.MALE, Employee.Role.MANAGER, "Java", "klim.fedorov@firma.ru",
-                "+71234567890", "Granatniy st. 11/1", "Moscow","Moscow", 123001));
-        res.add(director.makeEmployee("Nil", "Polsky", 19,
+                "+71234567890", "Granatniy st. 11", "Moscow","Moscow", 123001));
+        res.add(director.makeEmployee("Nil", "Polsky", 30,
                 Employee.Gender.MALE, Employee.Role.STAFF, "Java", "nil.polsky@firma.ru",
                 "+74561237890", "Oktiabrskaya st. 13", "Krasnogorsk",
                 "Moscow area", 123456));
-        res.add(director.makeEmployee("Daria", "Ignasheva", 20,
+        res.add(director.makeEmployee("Daria", "Ignasheva", 35,
                 Employee.Gender.FEMALE, Employee.Role.EXECUTIVE, "C++", "daria.ignasheva@firma.ru",
                 "+77894561230", "Moskovskaya st. 118", "Tver",
                 "Tver area", 456123));
@@ -54,18 +54,18 @@ public class Utils {
                 Employee.Gender.FEMALE, Employee.Role.EXECUTIVE, "C++", "daria.pankratova@firma.ru",
                 "+79456123660", "Ostrovskiy st. 64", "Kazan",
                 "Republic of Tatarstan", 412356));
-        res.add(director.makeEmployee("Vladimir", "Shubkin", 18,
+        res.add(director.makeEmployee("Vladimir", "Shubkin", 40,
                 Employee.Gender.MALE, Employee.Role.MANAGER, "C#", "vladimir.shubkin@firma.ru",
                 "+79456321660", "School st. 2", "Barnaul",
                 "Altai region", 432156));
-        res.add(director.makeEmployee("Tatiana", "Volik", 18,
+        res.add(director.makeEmployee("Tatiana", "Volik", 45,
                 Employee.Gender.MALE, Employee.Role.MANAGER, "Art", "tatiana.volik@firma.ru",
                 "+79456321660", "Severnaya St. 3", "Alushta",
                 "Republic of Crimea", 432516));
-        res.add(director.makeEmployee("Svetlana", "Aniuhina", 19,
+        res.add(director.makeEmployee("Svetlana", "Anyuhina", 25,
                 Employee.Gender.MALE, Employee.Role.MANAGER, "Art", "svetlana.aniuhina@yandex.ru",
-                "+79456321660", "Severnaya St. 3", "Alushta",
-                "Republic of Crimea", 432516));
+                "+79456326088", "Bolshaya Polianka St. 5", "Moscow",
+                "Moscow", 453216));
         return res;
     }
 }
