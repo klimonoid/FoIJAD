@@ -22,48 +22,30 @@ public class Test {
         listToTrain.forEach(System.out::println);
         System.out.println("-----------------------------------------------------------------------------------------");
 
-        // MAP
-        // get list of men mails without domains (cause they're all same)
+        // PEEK + MAP
+        // get list of men mails without domains (cause they're all same) and output their phone numbers
         List<String> result1 = listToTrain.stream()
                 .filter(employee -> employee.getGender() == Gender.MALE)
+                .peek(employee -> System.out.println(
+                        "Phone number of " + employee.getPhone() +
+                                " " + employee.getAddress()
+                ))
                 .map(employee -> employee.getMail().substring(0, employee.getMail().indexOf("@")))
                 .collect(Collectors.toList());
         result1.forEach(System.out::println);
         listToTrain.forEach(System.out::println);
-        System.out.println("-----------------------------------------------------------------------------------------");
 
-        // pay 10% bonus to employees that are over 40 years old
-        List<Double> result2 = listToTrain.stream()
-                .filter(employee -> employee.getAge() > 40)
-                .map(employee -> employee.getSalary() * 0.1)
-                .collect(Collectors.toList());
-        result2.forEach(System.out::println);
-        System.out.println("-----------------------------------------------------------------------------------------");
-
-        //PEEK
-        // output the salary and the Role of women employees from Moscow
-        List<Employee> result3 = listToTrain.stream()
+        // output the salary and the Role of women employees from Moscow and get
+        List<String> result3 = listToTrain.stream()
                 .filter(employee -> employee.getGender().equals(Gender.MALE) &&
-                        employee.getCity() == "Moscow")
+                        employee.getCity().equals("Moscow"))
                 .peek(employee -> System.out.println(
                         employee.getGivenName() + " has salary: " +
                                 employee.getSalary() + " and works as " + employee.getRole()
                 ))
+                .map(Employee::getAddress)
                 .collect(Collectors.toList());
         result3.forEach(System.out::println);
-        System.out.println("-----------------------------------------------------------------------------------------");
-
-        // output address of Executive's
-        List<Employee> result4 = listToTrain.stream()
-                .filter(employee -> employee.getRole() == Role.EXECUTIVE)
-                .peek(employee -> System.out.println(
-                        employee.getGivenName() + " " + employee.getSurName() +
-                                " is living in " + employee.getState() + " " + employee.getCity() +
-                                " " + employee.getAddress()
-                ))
-                .collect(Collectors.toList());
-        result3.forEach(System.out::println);
-        System.out.println("-----------------------------------------------------------------------------------------");
 
         // FIND_FIRST and AVERAGE
         // find the first male employee from Moscow whose age in less than average
@@ -94,6 +76,12 @@ public class Test {
                 .sum();
         System.out.println("Company need to pay " + needToPay);
         System.out.println("-----------------------------------------------------------------------------------------");
+
+        Integer peyToArtists= listToTrain.stream()
+                .filter(employee -> employee.getDept().equals("Art"))
+                .mapToInt(Employee::getSalary)
+                .sum();
+        System.out.println("Company need to pay to artists " + needToPay);
 
         // MIN and MAX
         // Minimum postal code
