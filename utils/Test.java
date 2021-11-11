@@ -8,7 +8,9 @@ import java.util.Scanner;
 public class Test {
     public static void main(String[] strings)
     {
-        testCreation();
+//        testCreation();
+//        testParsing();
+        testMerge();
     }
 
     private static void testMerge() {
@@ -35,12 +37,5 @@ public class Test {
         System.out.println("Enter a line of words:");
         String inp = in.nextLine();
         Utils.parseString(inp);
-    }
-
-    private static void testCreation() {
-        java.util.List<Employee> employee = Utils.createShortList();
-        for (Employee emp : employee) {
-            System.out.println(emp.toString());
-        }
     }
 }
