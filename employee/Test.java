@@ -1,6 +1,5 @@
 package employee;
 
-import javax.management.monitor.MonitorSettingException;
 import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
@@ -52,7 +51,7 @@ public class Test {
         double avgAge = listToTrain.stream().mapToDouble(Employee::getAge).average().orElse(0.0);
         System.out.println("The average age of employee is " + avgAge);
         Employee youngMoscowEmployee = listToTrain.stream()
-                .filter(employee -> employee.getCity() == "Moscow" &&
+                .filter(employee -> employee.getCity().equals("Moscow") &&
                         employee.getAge() < avgAge)
                 .findFirst().orElse(null);
         System.out.println(youngMoscowEmployee);
@@ -67,21 +66,21 @@ public class Test {
                 .filter(employee -> employee.getGender() == Gender.FEMALE &&
                         employee.getSalary() > avgMaleSalary)
                 .findFirst().orElse(null);
-        System.out.println(youngMoscowEmployee);
+        System.out.println(richFemaleEmployee);
         System.out.println("-----------------------------------------------------------------------------------------");
 
         // SUM
-        Integer needToPay = listToTrain.stream()
+        int needToPay = listToTrain.stream()
                 .mapToInt(Employee::getSalary)
                 .sum();
         System.out.println("Company need to pay " + needToPay);
         System.out.println("-----------------------------------------------------------------------------------------");
 
-        Integer peyToArtists= listToTrain.stream()
+        int payToArtists= listToTrain.stream()
                 .filter(employee -> employee.getDept().equals("Art"))
                 .mapToInt(Employee::getSalary)
                 .sum();
-        System.out.println("Company need to pay to artists " + needToPay);
+        System.out.println("Company need to pay to artists " + payToArtists);
 
         // MIN and MAX
         // Minimum postal code
@@ -132,7 +131,7 @@ public class Test {
 
         // Получить случайного работника
         Supplier<Employee> randomEmployee = () -> {
-            Integer index = (int) (Math.random() * employeeList.size());
+            int index = (int) (Math.random() * employeeList.size());
             return employeeList.get(index);
         };
 

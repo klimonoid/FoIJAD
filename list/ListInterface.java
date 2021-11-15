@@ -5,7 +5,7 @@ public interface ListInterface<T> {
     Object remove (Integer index);
     Object get(Integer index);
     Object set(T value, Integer index);
-    int size();
+    Integer size();
     boolean isEmpty();
     boolean contains(T value);
     Integer indexOf(T value);

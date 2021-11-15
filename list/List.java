@@ -15,6 +15,11 @@ public class List<T> implements ListInterface<T> {
             this.value = value;
             next = null;
         }
+
+        @Override
+        public String toString() {
+            return value.toString();
+        }
     }
 
     protected Integer size;
@@ -58,13 +63,6 @@ public class List<T> implements ListInterface<T> {
             head = new Node<>(value);
             tail = head;
         } else {
-//            Node<T> q = head;
-//            while (q.next != null) {
-//                q = q.next;
-//            }
-//            q.next = new Node<>(value);
-//            size += 1;
-//            tail = tail.next;
             tail.next = new Node<>(value);
             size += 1;
             tail = tail.next;
@@ -87,7 +85,7 @@ public class List<T> implements ListInterface<T> {
         }
     }
 
-    public Object remove(Integer index) {
+    public T remove(Integer index) {
         Node<T> res;
         if (index == 0) {
             res = head;
@@ -117,10 +115,10 @@ public class List<T> implements ListInterface<T> {
             }
         }
         size -= 1;
-        return res;
+        return res.value;
     }
 
-    public Object get(Integer index) {
+    public T get(Integer index) {
         Node<T> q = head;
         for (int i = 0; i < index; i++) {
             if (q.next != null) {
@@ -146,9 +144,7 @@ public class List<T> implements ListInterface<T> {
         return res;
     }
 
-    public int size() {
-        return this.size;
-    }
+    public Integer size() { return this.size; }
 
     public boolean isEmpty() {
         return (size <= 0);
@@ -193,34 +189,18 @@ public class List<T> implements ListInterface<T> {
         return found? index : -1;
     }
 
-    public void mergeWith(List<T> l) {
-        if (size == 0) {
-            head = l.head;
-            tail = l.tail;
-            size = l.size;
-        } else {
-            // если не использовать копирующий конструктор, возникнут проблемы,
-            // когда мы попробуем сцепить список с самим собой
-            List<T> tmp = new List<>(l);
-
-
-            // почему не работает
-            // Node<T> q = tail;
-            // q.next = l.head
-            // size += l.size
-            // tail = l.tail
-            // а это работает????(((
-
-            Node<T> q = head;
-            while(q.next != null) {
-                q = q.next;
-            }
-            q.next = tmp.head;
-            size += l.size;
-            tail = l.tail;
-
-            System.out.println("this " + this.toString());
+    public static <T> List<T> merge(List<T> toStartList, List<T> toEndList) {
+        if(toStartList.isEmpty()) {
+            return toEndList;
         }
+        if (toEndList.isEmpty()) {
+            return toStartList;
+        }
+        List<T> res = new List<>(toStartList);
+        for(Integer i = 0; i < toEndList.size(); ++i) {
+            res.add(toEndList.get(i));
+        }
+        return res;
     }
 
     @Override
