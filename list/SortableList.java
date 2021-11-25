@@ -71,10 +71,10 @@ public class SortableList<T extends Comparable<T>> extends List<T> {
         }
         SortableList<T> res = new SortableList<>();
         for(Integer i = 0; i < toStartList.size(); ++i) {
-            res.add(toStartList.get(i));
+            res.orderedAdd(toStartList.get(i));
         }
         for(Integer i = 0; i < toEndList.size(); ++i) {
-            res.add(toEndList.get(i));
+            res.orderedAdd(toEndList.get(i));
         }
         return res;
     }
